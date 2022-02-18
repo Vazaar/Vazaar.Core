@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vazaar.Core.Api", "Vazaar.Core.Api\Vazaar.Core.Api.csproj", "{877A3111-11B5-4B02-9B31-AAB79D3DE665}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vazaar.Core.Api", "Vazaar.Core.Api\Vazaar.Core.Api.csproj", "{877A3111-11B5-4B02-9B31-AAB79D3DE665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vazaar.Core.Api.Tests.Unit", "Vazaar.Core.Api.Tests.Unit\Vazaar.Core.Api.Tests.Unit.csproj", "{7FFC2259-1E3B-4840-A820-3E3D7F94566A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{877A3111-11B5-4B02-9B31-AAB79D3DE665}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{877A3111-11B5-4B02-9B31-AAB79D3DE665}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{877A3111-11B5-4B02-9B31-AAB79D3DE665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FFC2259-1E3B-4840-A820-3E3D7F94566A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FFC2259-1E3B-4840-A820-3E3D7F94566A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FFC2259-1E3B-4840-A820-3E3D7F94566A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FFC2259-1E3B-4840-A820-3E3D7F94566A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
