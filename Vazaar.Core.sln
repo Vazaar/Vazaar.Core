@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vazaar.Core.Api", "Vazaar.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vazaar.Core.Api.Tests.Unit", "Vazaar.Core.Api.Tests.Unit\Vazaar.Core.Api.Tests.Unit.csproj", "{7FFC2259-1E3B-4840-A820-3E3D7F94566A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vazaar.Core.Api.Tests.Acceptance", "Vazaar.Core.Api.Tests.Acceptance\Vazaar.Core.Api.Tests.Acceptance.csproj", "{3138EEAD-8EE6-4D0D-A3AD-EC22AB09DD16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vazaar.Core.Api.Tests.Acceptance", "Vazaar.Core.Api.Tests.Acceptance\Vazaar.Core.Api.Tests.Acceptance.csproj", "{3138EEAD-8EE6-4D0D-A3AD-EC22AB09DD16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vazaar.Core.Api.Infrastructure.Build", "Vazaar.Core.Api.Infrastructure.Build\Vazaar.Core.Api.Infrastructure.Build.csproj", "{9DC43626-3364-4F20-A138-843C54D71BDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3138EEAD-8EE6-4D0D-A3AD-EC22AB09DD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3138EEAD-8EE6-4D0D-A3AD-EC22AB09DD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3138EEAD-8EE6-4D0D-A3AD-EC22AB09DD16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DC43626-3364-4F20-A138-843C54D71BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DC43626-3364-4F20-A138-843C54D71BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DC43626-3364-4F20-A138-843C54D71BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DC43626-3364-4F20-A138-843C54D71BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
