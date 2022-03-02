@@ -1,4 +1,5 @@
-﻿using ADotNet.Models.Pipelines.GithubPipelines.DotNets;
+﻿using ADotNet.Clients;
+using ADotNet.Models.Pipelines.GithubPipelines.DotNets;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV1s;
 
@@ -38,8 +39,7 @@ var githubPipeline = new GithubPipeline
 
                     TargetDotNetVersion = new TargetDotNetVersion
                     {
-                        DotNetVersion = "7.0.100-preview.1.22110.4",
-                        IncludePrerelease = true
+                        DotNetVersion = "6.0.101"
                     }
                 },
 
@@ -61,3 +61,8 @@ var githubPipeline = new GithubPipeline
         }
     }
 };
+
+var adotNetClient = new ADotNetClient();
+adotNetClient.SerializeAndWriteToFile(
+    githubPipeline,
+    path: "../../../../.github/workflows/dotnet.yml");
