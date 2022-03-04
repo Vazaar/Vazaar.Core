@@ -12,5 +12,6 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
     public partial interface ICloudBroker
     {
         ValueTask<IResourceGroup> CreateResourceGroupAsync(string resourceGroupName);
+        ValueTask<bool> CheckResourceGroupExistsAsync(string resourceGroupName);
     }
 }

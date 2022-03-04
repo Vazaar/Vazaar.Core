@@ -20,5 +20,8 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
                 .WithRegion(Region.IndiaCentral)
                 .CreateAsync();
         }
+
+        public async ValueTask<bool> CheckResourceGroupExistsAsync(string resourceGroupName) =>
+            await azure.ResourceGroups.ContainAsync(resourceGroupName);
     }
 }
