@@ -4,15 +4,10 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-
+using System.Threading.Tasks;
 using Microsoft.Azure.Management.AppService.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
 {
@@ -27,7 +22,7 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
                 .WithRegion(Region.IndiaCentral)
                 .WithExistingResourceGroup(resourceGroup)
                 .WithPricingTier(PricingTier.StandardS1)
-                .WithOperatingSystem(Microsoft.Azure.Management.AppService.Fluent.OperatingSystem.Windows)
+                .WithOperatingSystem(OperatingSystem.Windows)
                 .CreateAsync();
         }
     }
