@@ -4,9 +4,9 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using System.Net.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
 using RESTFulSense.Clients;
+using System.Net.Http;
 
 namespace Vazaar.Core.Api.Tests.Acceptance.Brokers
 {

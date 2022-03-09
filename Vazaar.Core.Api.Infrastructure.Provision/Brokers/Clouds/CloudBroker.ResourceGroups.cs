@@ -4,9 +4,9 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using System.Threading.Tasks;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
+using System.Threading.Tasks;
 
 namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
 {
@@ -14,7 +14,7 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
     {
         public async ValueTask<bool> CheckResourceGroupExistsAsync(string resourceGroupName) =>
             await azure.ResourceGroups.ContainAsync(resourceGroupName);
-        
+
         public async ValueTask<IResourceGroup> CreateResourceGroupAsync(
             string resourceGroupName)
         {
@@ -23,7 +23,7 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
                 .WithRegion(Region.IndiaCentral)
                 .CreateAsync();
         }
-     
+
         public async ValueTask DeleteResourceGroupAsync(string resourceGroupName) =>
             await this.azure.ResourceGroups.DeleteByNameAsync(resourceGroupName);
     }
