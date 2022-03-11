@@ -7,6 +7,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.Sql.Fluent;
+using Vazaar.Core.Api.Infrastructure.Provision.Models.Storages;
 
 namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
 {
@@ -19,5 +20,7 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
         ValueTask<ISqlDatabase> CreateSqlDatabaseAsync(
             string sqlDatabaseName,
             ISqlServer sqlServer);
+
+        SqlDatabaseAccess GetDatabaseAccess();
     }
 }
