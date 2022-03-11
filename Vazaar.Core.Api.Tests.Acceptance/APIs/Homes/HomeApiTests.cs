@@ -4,8 +4,8 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using FluentAssertions;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Vazaar.Core.Api.Tests.Acceptance.Brokers;
 using Xunit;
 

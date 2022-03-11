@@ -4,8 +4,8 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using Microsoft.Azure.Management.ResourceManager.Fluent;
 using System.Threading.Tasks;
+using Microsoft.Azure.Management.ResourceManager.Fluent;
 
 namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
 {

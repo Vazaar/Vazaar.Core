@@ -9,7 +9,7 @@ using Xunit;
 namespace Vazaar.Core.Api.Tests.Acceptance.Brokers
 {
     [CollectionDefinition(nameof(ApiTestCollection))]
-    public class ApiTestCollection : ICollectionFixture<VazaarApiBroker>
+    public class ApiTestCollection: ICollectionFixture<VazaarApiBroker>
     {
     }
 }
