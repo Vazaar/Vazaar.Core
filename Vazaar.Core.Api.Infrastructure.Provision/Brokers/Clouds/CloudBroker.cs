@@ -6,11 +6,13 @@
 
 using System;
 using System.Threading.Tasks;
+using Microsoft.Azure.Management.AppService.Fluent;
 using Microsoft.Azure.Management.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
 using Microsoft.Azure.Management.Sql.Fluent;
+using Vazaar.Core.Api.Infrastructure.Provision.Models.Storages;
 
 namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
 {
@@ -31,6 +33,11 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
             this.adminName = Environment.GetEnvironmentVariable("AzureAdminName");
             this.adminAccess = Environment.GetEnvironmentVariable("AzureAdminAccess");
             this.azure = AuthenticateAzure();
+        }
+
+        public SqlDatabaseAccess GetDatabaseAccess()
+        {
+            throw new NotImplementedException();
         }
 
         private IAzure AuthenticateAzure()
