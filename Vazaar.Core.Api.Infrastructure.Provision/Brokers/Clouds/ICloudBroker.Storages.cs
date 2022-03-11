@@ -21,6 +21,6 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
             string sqlDatabaseName,
             ISqlServer sqlServer);
 
-        SqlDatabaseAccess GetDatabaseAccess();
+        SqlDatabaseAccess GetSqlDatabaseAccess();
     }
 }

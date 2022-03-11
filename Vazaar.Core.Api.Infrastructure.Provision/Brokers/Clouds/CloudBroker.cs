@@ -35,11 +35,6 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds
             this.azure = AuthenticateAzure();
         }
 
-        public SqlDatabaseAccess GetDatabaseAccess()
-        {
-            throw new NotImplementedException();
-        }
-
         private IAzure AuthenticateAzure()
         {
             AzureCredentials credentials =
