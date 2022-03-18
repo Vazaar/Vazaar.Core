@@ -26,5 +26,10 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             string projectName,
             string environment,
             IResourceGroup resourceGroup);
+
+        ValueTask<ISqlDatabase> ProvisionSqlDatabaseAsync(
+            string projectName,
+            string enviroment,
+            ISqlServer sqlServer); 
     }
 }

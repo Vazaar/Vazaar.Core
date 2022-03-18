@@ -51,7 +51,7 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
         {
             string appServicePlanName = $"{projectName}-PLAN-{environment}".ToUpper();
             this.loggingBroker.LogActivity(message: $"Provisioning {appServicePlanName} ...");
-            
+
             IAppServicePlan appServicePlan = await this.cloudBroker.CreatePlanAsync(
                 appServicePlanName, resourceGroup);
 
@@ -75,6 +75,24 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             this.loggingBroker.LogActivity(message: $"Provisioning {sqlServerName} complete.");
 
             return sqlServer;
+        }
+
+        public async ValueTask<ISqlDatabase> ProvisionSqlDatabaseAsync(
+            string projectName,
+            string enviroment,
+            ISqlServer sqlServer)
+        {
+            string databaseName = $"{projectName}-db-{enviroment}".ToLower();
+            this.loggingBroker.LogActivity(message: $"Provisioning {databaseName}...");
+
+            ISqlDatabase sqlDatabase =
+                await this.cloudBroker.CreateSqlDatabaseAsync(
+                    databaseName,
+                    sqlServer);
+
+            this.loggingBroker.LogActivity(message: $"Provisioning {sqlDatabase} complete.");
+
+            return sqlDatabase;
         }
     }
 }
