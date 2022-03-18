@@ -7,6 +7,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Management.AppService.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
+using Microsoft.Azure.Management.Sql.Fluent;
 using Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds;
 using Vazaar.Core.Api.Infrastructure.Provision.Brokers.Loggings;
 
@@ -57,6 +58,23 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             this.loggingBroker.LogActivity(message: $"Provisioning {appServicePlanName} complete.");
 
             return appServicePlan;
+        }
+
+        public async ValueTask<ISqlServer> ProvisionSqlServerAsync(
+            string projectName,
+            string environment,
+            IResourceGroup resourceGroup)
+        {
+            string sqlServerName = $"{projectName}-dbserver-{environment}".ToLower();
+            this.loggingBroker.LogActivity(message: $"Provisioning {sqlServerName}...");
+
+            ISqlServer sqlServer = await this.cloudBroker.CreateSqlServerAsync(
+                sqlServerName,
+                resourceGroup);
+
+            this.loggingBroker.LogActivity(message: $"Provisioning {sqlServerName} complete.");
+
+            return sqlServer;
         }
     }
 }

@@ -7,6 +7,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Management.AppService.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
+using Microsoft.Azure.Management.Sql.Fluent;
 
 namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudManagements
 {
@@ -17,6 +18,11 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             string environment);
 
         ValueTask<IAppServicePlan> ProvisionAppServicePlanAsync(
+            string projectName,
+            string environment,
+            IResourceGroup resourceGroup);
+
+        ValueTask<ISqlServer> ProvisionSqlServerAsync(
             string projectName,
             string environment,
             IResourceGroup resourceGroup);
