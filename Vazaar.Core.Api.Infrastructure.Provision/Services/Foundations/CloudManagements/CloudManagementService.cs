@@ -10,6 +10,7 @@ using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.Sql.Fluent;
 using Vazaar.Core.Api.Infrastructure.Provision.Brokers.Clouds;
 using Vazaar.Core.Api.Infrastructure.Provision.Brokers.Loggings;
+using Vazaar.Core.Api.Infrastructure.Provision.Models.Storages;
 
 namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudManagements
 {
@@ -77,7 +78,7 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             return sqlServer;
         }
 
-        public async ValueTask<ISqlDatabase> ProvisionSqlDatabaseAsync(
+        public async ValueTask<SqlDatabase> ProvisionSqlDatabaseAsync(
             string projectName,
             string enviroment,
             ISqlServer sqlServer)
@@ -92,7 +93,22 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
 
             this.loggingBroker.LogActivity(message: $"Provisioning {sqlDatabase} complete.");
 
-            return sqlDatabase;
+            return new SqlDatabase
+            {
+                Database = sqlDatabase,
+                ConnectionString = GenerateConnectionString(sqlDatabase)
+            };
+        }
+
+        private string GenerateConnectionString(ISqlDatabase sqlDatabase)
+        {
+            SqlDatabaseAccess access = 
+                this.cloudBroker.GetSqlDatabaseAccess();
+
+            return $"Server=tcp:{sqlDatabase.SqlServerName}.database.windows.net,1433;" +
+                $"Initial Catalog={sqlDatabase.Name};" +
+                $"User ID={access.AdminName};" +
+                $"Password={access.AdminAccess};";
         }
     }
 }

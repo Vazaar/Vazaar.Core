@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Management.AppService.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.Sql.Fluent;
+using Vazaar.Core.Api.Infrastructure.Provision.Models.Storages;
 
 namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudManagements
 {
@@ -27,7 +28,7 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             string environment,
             IResourceGroup resourceGroup);
 
-        ValueTask<ISqlDatabase> ProvisionSqlDatabaseAsync(
+        ValueTask<SqlDatabase> ProvisionSqlDatabaseAsync(
             string projectName,
             string enviroment,
             ISqlServer sqlServer); 
