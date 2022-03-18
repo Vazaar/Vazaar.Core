@@ -25,7 +25,6 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             this.loggingBroker = new LoggingBroker();
         }
 
-
         public async ValueTask<IResourceGroup> ProvisionResourceGroupAsync(
             string projectName,
             string environment)
@@ -45,6 +44,7 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
 
             return resourceGroup;
         }
+
         public async ValueTask<IAppServicePlan> ProvisionAppServicePlanAsync(
             string projectName,
             string environment,
@@ -100,9 +100,31 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             };
         }
 
+        public async ValueTask<IWebApp> ProvisionWebAppAsync(
+            string projectName,
+            string environment,
+            string databaseConnectionString,
+            IAppServicePlan appServicePlan,
+            IResourceGroup resourceGroup)
+        {
+            string webAppName = $"{projectName}-{environment}".ToLower();
+            this.loggingBroker.LogActivity(message: $"Provisoning {webAppName}...");
+
+            IWebApp webApp = await this.cloudBroker.CreateWebAppAsync(
+                webAppName,
+                databaseConnectionString,
+                appServicePlan,
+                resourceGroup);
+
+            this.loggingBroker.LogActivity(
+                message: $"Provisioning {webAppName} complete.");
+
+            return webApp;
+        }
+
         private string GenerateConnectionString(ISqlDatabase sqlDatabase)
         {
-            SqlDatabaseAccess access = 
+            SqlDatabaseAccess access =
                 this.cloudBroker.GetSqlDatabaseAccess();
 
             return $"Server=tcp:{sqlDatabase.SqlServerName}.database.windows.net,1433;" +
