@@ -7,7 +7,6 @@
 using EFxceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Vazaar.Core.Membership.Entities;
 
 namespace Vazaar.Core.Api.Brokers.Storage
 {

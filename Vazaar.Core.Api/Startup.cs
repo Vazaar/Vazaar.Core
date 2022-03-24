@@ -5,7 +5,6 @@
 // ---------------------------------------------------------------
 
 using System;
-using System.Reflection;
 using System.Text;
 using Autofac;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -31,10 +30,11 @@ namespace Vazaar.Core.Api
     {
         public Startup(IConfiguration configuration) =>
             Configuration = configuration;
+
         public IConfiguration Configuration { get; }
 
         public void ConfigureContainer(ContainerBuilder builder)
-        {            
+        {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             var assemblyName = typeof(Startup).Assembly.FullName;
             //var migrationAssemblyName = Assembly.GetExecutingAssembly().FullName;
@@ -55,7 +55,8 @@ namespace Vazaar.Core.Api
                 )
             );
 
-            services.AddScoped<DbContext>(sp => new ApplicationDbContext(connectionString, assemblyName));
+            services.AddScoped<DbContext>(sp => 
+                new ApplicationDbContext(connectionString, assemblyName));
 
             services.AddIdentity<ApplicationUser, Role>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
