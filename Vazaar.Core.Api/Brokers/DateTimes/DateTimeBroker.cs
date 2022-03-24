@@ -4,12 +4,12 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using Xunit;
+using System;
 
-namespace Vazaar.Core.Api.Tests.Acceptance.Brokers
+namespace Vazaar.Core.Api.Brokers.DateTimes
 {
-    [CollectionDefinition(nameof(ApiTestCollection))]
-    public class ApiTestCollection : ICollectionFixture<VazaarApiBroker>
+    public class DateTimeBroker : IDateTimeBroker
     {
+        public DateTimeOffset GetCurrentDateTime() => DateTimeOffset.UtcNow;
     }
 }

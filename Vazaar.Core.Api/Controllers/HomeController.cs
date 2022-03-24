@@ -4,12 +4,13 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Vazaar.Core.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
+    [ApiController, Authorize(Policy = "AccessPermission")]
     public class HomeController : ControllerBase
     {
         [HttpGet]
