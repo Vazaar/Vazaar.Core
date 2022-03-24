@@ -20,6 +20,7 @@ namespace Vazaar.Core.Membership.Security
             {
                 context.Succeed(requirement);
             }
+
             return Task.CompletedTask;
         }
     }

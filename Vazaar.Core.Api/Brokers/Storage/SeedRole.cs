@@ -4,11 +4,12 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using System;
 using Vazaar.Core.Membership.Entities;
 
-namespace Vazaar.Core.Membership.Seeds
+namespace Vazaar.Core.Api.Brokers.Storage
 {
-    internal static class RoleSeed
+    public static class SeedRole
     {
         internal static Role[] Roles
         {

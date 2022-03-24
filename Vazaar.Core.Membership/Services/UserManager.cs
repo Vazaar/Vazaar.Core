@@ -1,7 +1,7 @@
-﻿using Vazaar.Core.Membership.Entities;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Vazaar.Core.Membership.Entities;
 
 namespace Vazaar.Core.Membership.Services
 {

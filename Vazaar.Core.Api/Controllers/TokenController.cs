@@ -1,14 +1,14 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using Vazaar.Core.Membership.Entities;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
-using System.Threading.Tasks;
-using System;
-using System.Linq;
+using Microsoft.IdentityModel.Tokens;
+using Vazaar.Core.Membership.Entities;
 
 namespace Vazaar.Core.Api.Controllers
 {
@@ -16,17 +16,17 @@ namespace Vazaar.Core.Api.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IConfiguration configuration;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public TokenController(IConfiguration config,
+        public TokenController(IConfiguration configuration,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
         {
-            _configuration = config;
-            _userManager = userManager;
-            _signInManager = signInManager;
+            this.configuration = configuration;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         [HttpGet]
@@ -34,18 +34,18 @@ namespace Vazaar.Core.Api.Controllers
         {
             if (email != null && password != null)
             {
-                var user = await _userManager.FindByEmailAsync(email);
-                var result = await _signInManager.CheckPasswordSignInAsync(user, password, true);
+                var user = await userManager.FindByEmailAsync(email);
+                var result = await signInManager.CheckPasswordSignInAsync(user, password, true);
 
                 if (result != null && result.Succeeded)
                 {
                     var tokenHandler = new JwtSecurityTokenHandler();
-                    var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+                    var key = Encoding.ASCII.GetBytes(this.configuration["Jwt:Key"]);
                     var tokenDescriptor = new SecurityTokenDescriptor
                     {
-                        Subject = new ClaimsIdentity((await _userManager.GetClaimsAsync(user)).ToArray()),
-                        Issuer = _configuration["Jwt:Issuer"],
-                        Audience = _configuration["Jwt:Audience"],
+                        Subject = new ClaimsIdentity((await userManager.GetClaimsAsync(user)).ToArray()),
+                        Issuer = this.configuration["Jwt:Issuer"],
+                        Audience = this.configuration["Jwt:Audience"],
                         Expires = DateTime.UtcNow.AddDays(7),
                         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                     };

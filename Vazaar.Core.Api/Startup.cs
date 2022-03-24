@@ -35,6 +35,7 @@ namespace Vazaar.Core.Api
 
             var connectionStringName = "DefaultConnection";
             var connectionString = Configuration.GetConnectionString(connectionStringName);
+
             var migrationAssemblyName = typeof(Startup).Assembly.FullName;
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
@@ -42,6 +43,7 @@ namespace Vazaar.Core.Api
                     b => b.MigrationsAssembly(migrationAssemblyName)
                 )
             );
+
             services.AddScoped<DbContext>(sp => new ApplicationDbContext(connectionStringName, migrationAssemblyName));
 
             services.AddIdentity<ApplicationUser, Role>()
@@ -54,7 +56,6 @@ namespace Vazaar.Core.Api
 
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings.
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
@@ -62,12 +63,10 @@ namespace Vazaar.Core.Api
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
 
-                // Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
 
-                // User settings.
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;

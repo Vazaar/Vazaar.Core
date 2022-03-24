@@ -4,12 +4,12 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using Vazaar.Core.Membership.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Vazaar.Core.Membership.Entities;
 
 
 namespace Vazaar.Core.Membership.Services

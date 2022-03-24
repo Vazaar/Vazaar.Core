@@ -13,8 +13,8 @@ namespace Vazaar.Core.Membership.DbContexts
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, Guid,
         UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IApplicationDbContext
     {
-        private readonly string _connectionString;
-        private readonly string _migrationAssemblyName;
+        private readonly string connectionString;
+        private readonly string migrationAssemblyName;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -23,8 +23,8 @@ namespace Vazaar.Core.Membership.DbContexts
 
         public ApplicationDbContext(string connectionString, string migrationAssemblyName)
         {
-            _connectionString = connectionString;
-            _migrationAssemblyName = migrationAssemblyName;
+            this.connectionString = connectionString;
+            this.migrationAssemblyName = migrationAssemblyName;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
@@ -32,8 +32,8 @@ namespace Vazaar.Core.Membership.DbContexts
             if (!dbContextOptionsBuilder.IsConfigured)
             {
                 dbContextOptionsBuilder.UseSqlServer(
-                    _connectionString,
-                    m => m.MigrationsAssembly(_migrationAssemblyName));
+                    connectionString,
+                    m => m.MigrationsAssembly(migrationAssemblyName));
             }
 
             base.OnConfiguring(dbContextOptionsBuilder);
