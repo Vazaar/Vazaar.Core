@@ -5,7 +5,9 @@
 // ---------------------------------------------------------------
 
 using System;
+using System.Reflection;
 using System.Text;
+using Autofac;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Vazaar.Core.Membership;
 using Vazaar.Core.Membership.DbContexts;
 using Vazaar.Core.Membership.Entities;
 using Vazaar.Core.Membership.Security;
@@ -29,22 +32,30 @@ namespace Vazaar.Core.Api
         public Startup(IConfiguration configuration) =>
             Configuration = configuration;
         public IConfiguration Configuration { get; }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {            
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var assemblyName = typeof(Startup).Assembly.FullName;
+            //var migrationAssemblyName = Assembly.GetExecutingAssembly().FullName;
+
+            builder.RegisterModule(new ApiModule());
+            builder.RegisterModule(new MembershipModule(connectionString, assemblyName));
+        }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var assemblyName = typeof(Startup).Assembly.FullName;
 
-            var connectionStringName = "DefaultConnection";
-            var connectionString = Configuration.GetConnectionString(connectionStringName);
-
-            var migrationAssemblyName = typeof(Startup).Assembly.FullName;
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
                     connectionString,
-                    b => b.MigrationsAssembly(migrationAssemblyName)
+                    b => b.MigrationsAssembly(assemblyName)
                 )
             );
 
-            services.AddScoped<DbContext>(sp => new ApplicationDbContext(connectionStringName, migrationAssemblyName));
+            services.AddScoped<DbContext>(sp => new ApplicationDbContext(connectionString, assemblyName));
 
             services.AddIdentity<ApplicationUser, Role>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
