@@ -39,5 +39,9 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             string databaseConnectionString,
             IAppServicePlan appServicePlan,
             IResourceGroup resourceGroup);
+
+        ValueTask DeprovisionResourceGroupAsync(
+            string projectName,
+            string enviroment);
     }
 }

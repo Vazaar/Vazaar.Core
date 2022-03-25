@@ -122,6 +122,35 @@ namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Foundations.CloudMan
             return webApp;
         }
 
+        public async ValueTask DeprovisionResourceGroupAsync(string projectName, string environment)
+        {
+            string resourceGroupName =
+                $"{projectName}-RESOURCES-{environment}".ToUpper();
+
+            this.loggingBroker.LogActivity(
+                message: $"Checking for {resourceGroupName} ...");
+
+            bool isResourceGroupExist =
+                await this.cloudBroker.CheckResourceGroupExistsAsync(resourceGroupName);
+
+            if (isResourceGroupExist)
+            {
+                this.loggingBroker.LogActivity(
+                     message: $"Deprovisioning {resourceGroupName} ...");
+
+                await this.cloudBroker.DeleteResourceGroupAsync(
+                     resourceGroupName);
+
+                this.loggingBroker.LogActivity(
+                    message: $"Deprovisioning {resourceGroupName} Completed.");
+            }
+            else
+            {
+                this.loggingBroker.LogActivity(
+                    message: $"Could not find {resourceGroupName}.");
+            } 
+        }
+
         private string GenerateConnectionString(ISqlDatabase sqlDatabase)
         {
             SqlDatabaseAccess access =
