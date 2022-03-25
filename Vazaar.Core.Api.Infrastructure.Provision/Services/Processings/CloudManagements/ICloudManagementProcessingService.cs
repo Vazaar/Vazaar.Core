@@ -4,12 +4,12 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using Xunit;
+using System.Threading.Tasks;
 
-namespace Vazaar.Core.Api.Tests.Acceptance.Brokers
+namespace Vazaar.Core.Api.Infrastructure.Provision.Services.Processings.CloudManagements
 {
-    [CollectionDefinition(nameof(ApiTestCollection))]
-    public class ApiTestCollection : ICollectionFixture<VazaarApiBroker>
+    public interface ICloudManagementProcessingService
     {
+        ValueTask ProcessAsync();
     }
 }

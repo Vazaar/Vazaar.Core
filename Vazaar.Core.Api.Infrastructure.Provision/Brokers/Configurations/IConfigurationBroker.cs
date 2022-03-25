@@ -4,12 +4,12 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using Xunit;
+using Vazaar.Core.Api.Infrastructure.Provision.Models.Configurations;
 
-namespace Vazaar.Core.Api.Tests.Acceptance.Brokers
+namespace Vazaar.Core.Api.Infrastructure.Provision.Brokers.Configurations
 {
-    [CollectionDefinition(nameof(ApiTestCollection))]
-    public class ApiTestCollection : ICollectionFixture<VazaarApiBroker>
+    public interface IConfigurationBroker
     {
+        CloudManagementConfiguration GetConfiguration();
     }
 }

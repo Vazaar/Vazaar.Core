@@ -4,12 +4,13 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using Xunit;
+using Microsoft.Azure.Management.Sql.Fluent;
 
-namespace Vazaar.Core.Api.Tests.Acceptance.Brokers
+namespace Vazaar.Core.Api.Infrastructure.Provision.Models.Storages
 {
-    [CollectionDefinition(nameof(ApiTestCollection))]
-    public class ApiTestCollection : ICollectionFixture<VazaarApiBroker>
+    public class SqlDatabase
     {
+        public ISqlDatabase Database { get; set; }
+        public string ConnectionString { get; set; }
     }
 }
